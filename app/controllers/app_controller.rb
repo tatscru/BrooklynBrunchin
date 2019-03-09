@@ -7,8 +7,6 @@ class AppController < Sinatra::Base
   end
 
   get '/' do
-    @users = User.all 
-
-    erb :index
+    'Hello World!'
   end 
 end 

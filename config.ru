@@ -1,8 +1,8 @@
 require './config/environment'
 
-
 #this allows us to use HTTP methods like puts/patch
 use Rack::MethodOverride
+# use SessionsController
 
 if ActiveRecord::Migrator.needs_migration?
   raise 'Migrations are pending. Run `rake db:migrate` to resolve the issue.'
