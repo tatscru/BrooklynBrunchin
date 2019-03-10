@@ -1,10 +1,17 @@
 class UserController < AppController 
+
   get '/signup' do 
-    if !!Helpers.logged_in?(session)
-      erb :'user/new_user'
-    else 
+    if Helpers.logged_in?(session)
       redirect '/eateries'
+    else 
+      erb :'user/new_user'
     end 
+  end 
+
+  post '/signup' do 
+    if Helpers.logged_in?(session)
+      redirect :'/user/new_user'
+    elsif params[:username] == '' || params[:password] = ''
   end 
   
   get '/login' do
@@ -15,8 +22,7 @@ class UserController < AppController
     end 
   end 
 
-  # post do 
-  # end 
+  
 
   # post do 
   # end 
