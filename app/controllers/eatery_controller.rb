@@ -29,25 +29,35 @@ class EateryController < AppController
     end 
   end 
 
-  # get '/eatery/:id' do
-  #   if !Helpers.is_logged_in?(session)
-  #     redirect to '/login'
-  #   end
-  #   @eateries = Eatery.find(params[:id])
-  #   erb :"eatery/show_eatery"
-  # end
+  get '/eatery/:id' do
+    if !Helpers.is_logged_in?(session)
+      redirect to '/login'
+    end
+    @eateries = Eatery.find(params[:id])
+    erb :"eatery/show_eatery"
+  end
 
-  # get '/eatery/:id/edit' do
-  #   if !Helpers.is_logged_in?(session)
-  #     redirect to '/login'
-  #   end
-  #   @eateries = Tweet.find(params[:id])
-  #   if Helpers.current_user(session).id != @eateries.user_id
-  #     flash[:wrong_user_edit] = "Sorry you can only edit restaurants that you have submitted"
-  #     redirect to '/eateries'
-  #   end
-  #   erb :"/edit_eatery"
-  # end
+  get '/eatery/:id/edit' do
+    if !Helpers.is_logged_in?(session)
+      redirect to '/login'
+    end
+    @eateries = Tweet.find(params[:id])
+    if Helpers.current_user(session).id != @eateries.user_id
+      flash[:wrong_user_edit] = "Sorry you can only edit restaurants that you have submitted"
+      redirect to '/eateries'
+    end
+    erb :"/edit_eatery"
+  end
+
+  post '/eateries' do 
+    user = Helpers.current_user(session)
+    if !params.has_value("")
+      redirect to '/eateries/new'
+    else
+      eateries = Eatery.create(name: params[:name], cuisine: params[:cuisine], rating: params[:rating], content: params[:content], number: params[:number], user_id: user.id)
+      redirect to '/eateries'
+    end 
+  end
 
 
 

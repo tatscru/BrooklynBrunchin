@@ -5,16 +5,6 @@
     <h2>Welcome, <%= Helpers.current_user(session).username %>!</h2>
 
     <p>Below, is a list of the best places to eat in BK... Subjectively :) </p> 
-    <div>
-      <% Eatery.all.each do |eatery| %>
-        <h3><%= Eatery.user.username %></h3>
-          <p> Restaurant Name: <%= eatery.name %></p>
-          <p> Cuisine: <%= eatery.cuisine%></p>
-          <p> Rating: <%= eatery.rating%></p>
-          <p> Review: <%= eatery.content%></p>
-          <p> Phone Number: <%= eatery.number%></p>
-      </div>
-    <%end%>
 
   <a href="/eateries/new"> Add another restaurant to the list!</a><br>
   <br>

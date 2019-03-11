@@ -1,39 +1,49 @@
 <html> 
-  <body style="background-color: d2c8c8;">
-    <h2> What's the name of the new spot we should check out??<h2>
-    <h3>
-      <form method= 'POST' action= '/eateries'>
-        <label for=eatery> Restaurant Name:</label>
-        <input type= "text" name="eatery" id= "eatery">
-        <br>
-        <label> Cuisine: </label>
-        <input type= "text" name="cuisine" id="cuisine">
-        <br> 
-        <label> Rating: </label>
-        <select name="rating" value="N/A">
-          <option value="N/A">N/A</option>
-          <option value="1">1 star</option>
-          <option value="2">2 stars</option>
-          <option value="3">3 stars</option>
-          <option value="4">4 stars</option>
-          <option value="5">5 stars</option>
-        </select>
-        <br>
-        <label> Phone Number: </label>
-        <input type= "text" name="number">
-        <p>
-        <label for="content">Write a review:<p>
-        What should we try?<br> What would you go back for?<br> Best cocktail/drink specials?<br>Patio? Music?</label>
-        <br>
-        <textarea name= "content" id= "content"
-            rows= "10" cols="55">
-        </textarea>
-        </p>
-      <h3>
-      <p><input type='submit' value='Save this review'></p>
-      </form>
+  <h1> What is the name of the new spot we should check out?? </h1>
+  <body style="background-color: d2c8c8;">  
 
-      <a href='/logout'>Log Out</a>
-      <p><a href='/reviews'>Cancel</a></p>
-    </body>
+    <form method= "POST" action= '/eateries'>
+      <label for=eatery> Restaurant Name:</label>
+      <input type= "text" name="eatery" id= "eatery">
+      <br>
+      <label> Cuisine: </label>
+      <select name="cuisine">
+        <option value="N/A"></option>
+        <option value="American">American Bistro</option>
+        <option value="Asian">Asian</option>
+        <option value="Caribbean">Caribbean</option>
+        <option value="Indian">Indian</option>
+        <option value="Italian">Italian</option>
+        <option value="Mediterranean">Mediterranean</option>
+        <option value="Mexican">Mexican</option>
+        <option value="Soul">Soul/Southern</option>
+        <option value="Pizza">Pizza</option>
+      </select>
+      <br> 
+      <label> Rating: </label>
+      <select name= "rating" value= N/A>
+        <option value="N/A"></option>
+        <option value="1">1 star</option>
+        <option value="2">2 stars</option>
+        <option value="3">3 stars</option>
+        <option value="4">4 stars</option>
+        <option value="5">5 stars</option>
+      </select>
+      <br>
+      <label> Phone Number: </label>
+      <input type= "text" name="number">
+      <p>
+      <label for="content">Write a review:</p>
+      What should we try?<br> What would you go back for?<br> Best cocktail/drink specials?<br>Patio? Music?</label>
+      <br>
+      <textarea name= "content" id= "content"
+          rows= "10" cols="55">
+      </textarea>
+      </p>
+    <p><input type='submit' value='Save this review'></p>
+    </form>
+
+    <a href='/logout'>Log Out</a>
+    <p><a href='/eateries'>Cancel</a></p>
+  </body>
 </html>
