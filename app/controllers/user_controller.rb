@@ -1,30 +1,49 @@
 class UserController < AppController 
 
   get '/signup' do 
-    if Helpers.logged_in?(session)
-      redirect '/eateries'
-    else 
+    if !Helpers.logged_in?(session)
       erb :'user/new_user'
+    else 
+      redirect '/eateries'
     end 
   end 
 
   post '/signup' do 
-    if Helpers.logged_in?(session)
-      redirect :'/user/new_user'
-    elsif params[:username] == '' || params[:password] = ''
-  end 
+    if !params.has_value?("")
+      user= User.create(username: params[:username], password: params[:password], email: params[:email])
+      session[:user_id] = user.id 
+      redirect '/eateries'
+    else 
+      redirect '/signup'
+    end
+  end  
   
   get '/login' do
-    if !!Helpers.logged_in?(session)
+    if !Helpers.logged_in?(session)
       erb :'user/login'
     else 
       redirect '/eateries'
     end 
   end 
 
-  
+  post '/login' do 
+    user = User.find_by(username: params[:username])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id 
+      redirect '/eateries'
+    else 
+      # flash[:login_error] = "Incorrect login. Please try again."
+      redirect '/login'
+    end 
+  end 
 
-  # post do 
-  # end 
+  get '/logout' do 
+    if Helpers.logged_in?(session)
+      session.clear 
+      redirect '/login'
+    else 
+      redirect '/'
+    end 
+  end 
 
 end 

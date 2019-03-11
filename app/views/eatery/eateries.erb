@@ -1,20 +1,18 @@
-<h1> Brooklyn Eateries, Believe the Hype </h1>
+<html> 
+  <body style="background-color: f8f1f1;">
+    <h1> Brooklyn Eateries, Believe the Hype! </h1>
 
-<h2>Welcome,</h2>
-# <%= @user.username%><h1> 
+    <h2>Welcome, <%= Helpers.current_user(session).username %>!</h2>
 
-# <p>Below, is a list of the best places to eat in BK... Subjectively :) </p> 
-
-# <% @eateries.all do |eatery| %>
-# <%= Eatery.user.username %>
-#   <%end%>
-
-
-  <p>Welcome,</p>
-<% Tweet.all.each do |tweet| %>
-  <%= tweet.content %>
-  <% end %>
-
-#   <h1>Welcome, <%= @user.username %></h1>
-# <% @tweets.each do |tweet| %>
-
+    <p>Below, is a list of the best places to eat in BK... Subjectively :) </p> 
+    <div>
+      <% @eateries.each do |eatery| %>
+        <h3><%= Eatery.user.username %></h3>
+          <p> Restaurant Name: <%= eatery.name %></p>
+          <p> Cuisine: <%= eatery.cuisine%></p>
+          <p> Rating: <%= eatery.rating%></p>
+          <p> Review: <%= eatery.content%></p>
+          <p> Phone Number: <%= eatery.number%></p>
+        <%end%>
+  </body>
+</html>
