@@ -11,7 +11,7 @@
       <br>
       <% @eateries.each do |eatery| %>
         <div> 
-          <p> Restaurant: <a href= "/eateries/<%=eatery.id%>"><%= eatery.name%></a></p>
+          <p> Restaurant: <a href= "/eateries/<%= eatery.id%>"> <%= eatery.name%> </a><p>
           <p> Cuisine: <%= eatery.cuisine%> </p> 
           <p> Rating: <%= eatery.rating%> </p> 
           <p> Phone Number: <%= eatery.number%> </p>
@@ -23,11 +23,21 @@
     <a href="/eateries/new"> Add another restaurant to the list!</a><br>
     <br>
     <br>
-    <h4><p> Check out other recommended restaurants: </p><h4>
+   <h3><p> Check out other's recommendeded restaurants: </p><h3>
         <br>
         <% Eatery.all.each do |eatery| %>
-
-        <% end %>
+        <div> 
+          <p> Restaurant: <%= eatery.name %> 
+          <p> Reviewer: <%= User.find(eatery.user_id).username %> 
+          <p> Cuisine: <%= eatery.cuisine %> 
+          <p> Rating: <%= eatery.rating %> 
+          <p> Phone Number: <%= eatery.number %> 
+          <p> Review: <%= eatery.content %> 
+          <br> 
+          <br> 
+          <br>
+        </div> 
+        <% end%>
     <br>
     <a href="/logout"> Log Out </a> 
   </body>

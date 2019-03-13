@@ -72,6 +72,21 @@ class EateryController < AppController
   redirect "/eateries/#{@eatery.id}"
  end 
 
+ delete '/delete/:id/delete' do 
+  if Helpers.logged_in? 
+    @eatery = Eatery.find_by(session[:id])
+    if @eatery.user_id == session[:user_id]
+      @eatery.delete
+      flash[:message] = "You have just deleted a review."
+    end 
+  else 
+    flash[:message] = "Looks as though you have not logged in yet."
+    redirect '/login'
+  end 
+end 
+
+end 
+
 
 
  
