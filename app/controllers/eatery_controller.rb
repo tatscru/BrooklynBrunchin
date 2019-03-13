@@ -15,7 +15,7 @@ class EateryController < AppController
     if Helpers.logged_in?(session) 
       erb :'/eatery/new'
     else 
-      # flash[:message] = "Oops! It looks like you have not logged in yet."
+      flash[:message] = "Oops! It looks like you have not logged in yet."
       redirect '/login'
     end 
   end   
@@ -40,9 +40,10 @@ class EateryController < AppController
     end 
       @eatery = Eatery.find_by(session[:user_id])
       erb :'/show_eatery'
-    # else 
-    #   @eateries.user_id != session[:user_id]
-    #   erb :"eatery/eateries"
+    else 
+      @eatery.user_id != session[:user_id]
+      erb :"eatery/eateries"
+    end 
   end
 
   #Edit/Update
@@ -68,7 +69,7 @@ class EateryController < AppController
 
   eatery.update(params[:name], params[:cuisine], params[:rating], params[:content], params[:number])
   eatery.save 
-  # flash[:messsage] = "Your review has been updated!"
+  flash[:messsage] = "Your review has been updated!"
   redirect "/eateries/#{@eatery.id}"
  end 
 

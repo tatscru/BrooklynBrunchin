@@ -1,4 +1,5 @@
-# require 'sinatra/flash'
+# require 'sinatra/base'
+# require 'rack-flash'
 
 class AppController < Sinatra::Base 
 
