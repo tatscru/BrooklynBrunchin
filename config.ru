@@ -1,4 +1,5 @@
 require './config/environment'
+require 'pry'
 
 #this allows us to use HTTP methods like puts/patch
 use Rack::MethodOverride

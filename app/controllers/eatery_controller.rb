@@ -43,12 +43,8 @@ class EateryController < AppController
 
   #Edit/Update
   get '/eateries/:id/edit' do
-    if !Helpers.logged_in?(session)
-      # flash[:message] = "Looks like you weren't logged in yet. Please log in below."
-      redirect '/login'
-    end
     @eatery = Eatery.find(params[:id])
-    if Helpers.current_user(session).id == session[:user_id]
+    if Helpers.current_user(session).id == @eatery.user_id
       erb :"/eatery/edit_eatery"
     else 
       # flash[:wrong_user_edit] = "Sorry you can only edit restaurants that you yourself have reviewed"
@@ -72,11 +68,11 @@ class EateryController < AppController
   delete '/eateries/:id/delete' do 
     if Helpers.logged_in?(session) 
       @eatery = Eatery.find_by(params[:id])
-      # if @eatery.user_id == session[:user_id]
+      if Helpers.current_user(session).id == @eatery.user_id
         @eatery.destroy
         # flash[:message] = "You have just deleted a review."
         redirect to "/eateries"
-      # end 
+      end 
     else 
       # flash[:message] = "Looks as though you have not logged in yet."
       redirect '/login'
