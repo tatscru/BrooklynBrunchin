@@ -1,36 +1,35 @@
-<html> 
-  <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
-  <head>   
-  <body style="background-color: f8f1f1;">
-      <h1> Brooklyn Eateries, Believe the Hype! </h1>
+<header><button style="margin: 20px 0;"><a href="/logout">Log Out</a></button></header>
+<div class="container">
+  <h1> Brooklyn Eateries, Believe the Hype! </h1>
+  <h2>Welcome, <%= Helpers.current_user(session).username %>!</h2>
 
-      <h2>Welcome, <%= Helpers.current_user(session).username %>!</h2>
+  <p>Below, is a list of the best places to eat in BK... subjectively :) </p> 
+  <h3>Places you have recommended:</h3>
+  <div class="eateries">
+    <% @eateries.each do |eatery| %>
+      <div class="eatery submitter"> 
+        <p><span>Restaurant: </span><a href= "/eateries/<%= eatery.id%>"><%= eatery.name%></a></p>
+        <p><span>Cuisine: </span><%= eatery.cuisine%> </p> 
+        <p><span>Rating: </span><%= eatery.rating%> </p> 
+        <p><span>Phone Number: </span><%= eatery.number%> </p>
+        <p><span>Review: </span><%= eatery.content%></p> 
+      </div>
+    <%end%>
+  </div>
 
-      <p>Below, is a list of the best places to eat in BK... subjectively :) </p> 
-      <h3>Places you have recommended:</h3> 
-        <% @eateries.each do |eatery| %>
-          <div style="padding: 20px; margin-bottom: 10px; background-color: #ccbdba;"> 
-            <p><span style="font-weight: bold;">Restaurant: </span><a href= "/eateries/<%= eatery.id%>"><%= eatery.name%></a></p>
-            <p><span style="font-weight: bold;">Cuisine: </span><%= eatery.cuisine%> </p> 
-            <p><span style="font-weight: bold;">Rating: </span><%= eatery.rating%> </p> 
-            <p><span style="font-weight: bold;">Phone Number: </span><%= eatery.number%> </p>
-            <p><span style="font-weight: bold;">Review: </span><span><%= eatery.content%></p> 
-          </div>
-        <%end%>
-      <button style="margin: 20px 0;"><a href="/eateries/new">Add another restaurant to the list!</a></button>
-      <h3>Check out other's recommended restaurants:</h3>
-          <% Eatery.all.each do |eatery| %>
-            <div style="padding: 20px; margin-bottom: 10px; background-color: #ffd3ca;">
-              <p><span style="font-weight: bold;">Restaurant: </span><a href= "/eateries/<%= eatery.id%>"><%= eatery.name%></a></p>
-              <p><span style="font-weight: bold;">Reviewer: </span><%= User.find(eatery.user_id).username %> 
-              <p><span style="font-weight: bold;">Cuisine: </span><%= eatery.cuisine%> </p> 
-              <p><span style="font-weight: bold;">Rating: </span><%= eatery.rating%> </p> 
-              <p><span style="font-weight: bold;">Phone Number: </span><%= eatery.number%> </p>
-              <p><span style="font-weight: bold;">Review: </span><span><%= eatery.content%></p>
-            </div> 
-          <% end%>
-      <br>
-      <a href="/logout"> Log Out </a> 
-    </body>
-  </html>
+  <button style="margin: 20px 0;"><a href="/eateries/new">Add another restaurant to the list!</a></button>
+
+  <h3>Check out other's recommended restaurants:</h3>
+  <div class="eateries">
+    <% Eatery.all.each do |eatery| %>
+      <div class="eatery reviwer">
+        <p><span>Restaurant: </span><a href= "/eateries/<%= eatery.id%>"><%= eatery.name%></a></p>
+        <p><span>Reviewer: </span><%= User.find(eatery.user_id).username %> 
+        <p><span>Cuisine: </span><%= eatery.cuisine%> </p> 
+        <p><span>Rating: </span><%= eatery.rating%> </p> 
+        <p><span>Phone Number: </span><%= eatery.number%> </p>
+        <p><span>Review: </span><%= eatery.content%></p>
+      </div> 
+    <% end%>
+  </div>
+</div>

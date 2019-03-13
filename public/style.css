@@ -1,3 +1,70 @@
 body {
-  background: red;
+  margin: 0;
 }
+
+a {
+  text-decoration: none;
+}
+
+span {
+  font-weight: bold;
+}
+
+button {
+  background: black;
+  color: white;
+  padding: 10px;
+}
+
+button a {
+  color: white;
+}
+
+img {
+  width: 600px; 
+  height: auto;
+}
+
+form {
+  width: 200px;
+  margin: 0 auto;
+}
+
+label {
+  font-weight: bold;
+}
+
+input {
+  margin-bottom: 20px;
+}
+
+header {
+  text-align: right;
+}
+
+.container {
+  padding: 20px; 
+  width: 900px; 
+  margin: 0 auto; 
+  text-align: center;
+}
+
+.eateries {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.eatery {
+  padding: 20px; 
+  margin: 10px; 
+  width: 26%;
+}
+
+.eatery.submitter {
+  background-color: #ccbdba; 
+}
+
+.eatery.reviwer {
+  background-color: #ffd3ca;
+}
+
