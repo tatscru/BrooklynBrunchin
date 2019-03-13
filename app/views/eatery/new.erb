@@ -1,8 +1,8 @@
-<h1> What is the name of the new spot we should check out?? </h1>
+<h1 style="text-align: center;"> What is the name of the new spot we should check out?? </h1>
 
 <form method= "POST" action= '/eateries'>
   <label for=eatery> Restaurant Name:</label>
-  <input type= "text" name="eatery" id= "eatery">
+  <input type= "text" name="name" id= "name">
   <br>
   <label> Cuisine: </label>
   <select name="cuisine" id="cuisine">
@@ -17,7 +17,7 @@
     <option value="Soul">Soul/Southern</option>
     <option value="Pizza">Pizza</option>
   </select>
-  <br> 
+  <br>
   <label> Rating: </label>
   <select name= "rating" id= "rating" value= N/A>
     <option value="N/A"></option>
@@ -41,5 +41,7 @@
 <p><input type='submit' value='Save this review'></p>
 </form>
 
-<button><a href='/eateries'>Go Back <</a></button>
-<button><a href='/logout'>Log Out</a></button>
+<div class="container">
+  <button><a href='/eateries'>Go Back <</a></button>
+  <button><a href='/logout'>Log Out</a></button>
+</div>

@@ -6,13 +6,14 @@
   <p>Below, is a list of the best places to eat in BK... subjectively :) </p> 
   <h3>Places you have recommended:</h3>
   <div class="eateries">
-    <% @eateries.each do |eatery| %>
+    <% Helpers.current_user(session).eateries.each do |eatery| %>
       <div class="eatery submitter"> 
-        <p><span>Restaurant: </span><a href= "/eateries/<%= eatery.id%>"><%= eatery.name%></a></p>
+        <p><span>Restaurant: </span><a href= "<%= eatery.url %>"><%= eatery.name %></a></p>
         <p><span>Cuisine: </span><%= eatery.cuisine%> </p> 
         <p><span>Rating: </span><%= eatery.rating%> </p> 
         <p><span>Phone Number: </span><%= eatery.number%> </p>
         <p><span>Review: </span><%= eatery.content%></p> 
+        <button><a href="/eateries/<%= eatery.id %>/edit">edit</a></button>
       </div>
     <%end%>
   </div>
@@ -22,7 +23,7 @@
   <h3>Check out other's recommended restaurants:</h3>
   <div class="eateries">
     <% Eatery.all.each do |eatery| %>
-      <div class="eatery reviwer">
+      <div class="eatery reviewer">
         <p><span>Restaurant: </span><a href= "/eateries/<%= eatery.id%>"><%= eatery.name%></a></p>
         <p><span>Reviewer: </span><%= User.find(eatery.user_id).username %> 
         <p><span>Cuisine: </span><%= eatery.cuisine%> </p> 

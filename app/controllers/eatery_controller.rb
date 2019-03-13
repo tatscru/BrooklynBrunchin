@@ -29,65 +29,57 @@ class EateryController < AppController
     else 
       eatery = Eatery.create(name: params[:name], cuisine: params[:cuisine], rating: params[:rating], content: params[:content], number: params[:number], user_id: user.id)
       redirect '/eateries'
-      end 
     end 
   end 
 
-  get '/eatery/:id' do
-    if !Helpers.is_logged_in?(session)
+  get '/eateries/:id' do
+    if !Helpers.current_user(session)
       redirect to '/login'
       flash[:message] = "Looks like you weren't logged in yet. Please log in below."
     end 
-      @eatery = Eatery.find_by(session[:user_id])
-      erb :'/show_eatery'
-    # else 
-    #   @eatery.user_id != session[:user_id]
-    #   erb :"eatery/eateries"
-    # end 
+    @eatery = Eatery.find_by(params[:id])
+    erb :'/eatery/show_eatery'
   end
 
   #Edit/Update
-  get '/eatery/:id/edit' do
+  get '/eateries/:id/edit' do
     if !Helpers.logged_in?(session)
-      flash[:message] = "Looks like you weren't logged in yet. Please log in below."
+      # flash[:message] = "Looks like you weren't logged in yet. Please log in below."
       redirect '/login'
     end
     @eatery = Eatery.find(params[:id])
     if Helpers.current_user(session).id == session[:user_id]
-      erb :"/edit_eatery"
+      erb :"/eatery/edit_eatery"
     else 
-    flash[:wrong_user_edit] = "Sorry you can only edit restaurants that you yourself have reviewed"
+      # flash[:wrong_user_edit] = "Sorry you can only edit restaurants that you yourself have reviewed"
       redirect '/eateries'
     end 
   end
 
- patch '/eateries/:id' do 
-  if params[:name] == "" || params[:cuisine] == "" || params[:rating] == "" || params[:content] == ""
+  patch '/eateries/:id' do 
+    if params[:name] == "" || params[:cuisine] == "" || params[:rating] == "" || params[:content] == ""
       flash[:message] = "Try again, please update all category fields."
       redirect to "/reviews/#{params[:id]}/edit"
-  eatery = Eatery.find_by(params[:id])
-
-  eatery.update(params[:name], params[:cuisine], params[:rating], params[:content], params[:number])
-  eatery.save 
-  flash[:messsage] = "Your review has been updated!"
-  redirect "/eateries/#{@eatery.id}"
- end 
-
- delete '/delete/:id/delete' do 
-  if Helpers.logged_in? 
-    @eatery = Eatery.find_by(session[:id])
-    if @eatery.user_id == session[:user_id]
-      @eatery.delete
-      flash[:message] = "You have just deleted a review."
     end 
-  else 
-    flash[:message] = "Looks as though you have not logged in yet."
-    redirect '/login'
+    eatery = Eatery.find_by(params[:id])
+
+    eatery.update({ name: params[:name], cuisine: params[:cuisine], rating: params[:rating], content: params[:content], number: params[:number] })
+    eatery.save 
+    # flash[:messsage] = "Your review has been updated!"
+    redirect "/eateries"
   end 
-end 
 
-end 
-
-
-
- 
+  delete '/eateries/:id/delete' do 
+    if Helpers.logged_in?(session) 
+      @eatery = Eatery.find_by(params[:id])
+      # if @eatery.user_id == session[:user_id]
+        @eatery.destroy
+        # flash[:message] = "You have just deleted a review."
+        redirect to "/eateries"
+      # end 
+    else 
+      # flash[:message] = "Looks as though you have not logged in yet."
+      redirect '/login'
+    end 
+  end 
+end
