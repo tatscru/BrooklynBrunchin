@@ -4,41 +4,31 @@
 
     <h2>Welcome, <%= Helpers.current_user(session).username %>!</h2>
 
-    <p>Below, is a list of the best places to eat in BK... Subjectively :) </p> 
+    <p>Below, is a list of the best places to eat in BK... subjectively :) </p> 
     <p>
-    <p> Places you have recommended: </p>
-
-    <% @eateries.each do |review| %>
+    <p>
+    <h3><p><strong> Places you have recommended: <strong></p></h3> 
       <br>
-      <p> Restaurant: <a href="/eateries/<%= @eateries%>"><%= @eateries.name %></a></p>
-      <p> Cuisine: <%= eateries.cuisine %></p>
-    #   <p> Rating: <%= @eateries.rating %></p>
-    #   <p> Content: <%= @eateries.content %></p>
-    #   <p> Number: <%= @eateries.number %></p>
-    # <% end %>
+      <% @eateries.each do |eatery| %>
+        <div> 
+          <p> Restaurant: <a href= "/eateries/<%=eatery.id%>"><%= eatery.name%></a></p>
+          <p> Cuisine: <%= eatery.cuisine%> </p> 
+          <p> Rating: <%= eatery.rating%> </p> 
+          <p> Phone Number: <%= eatery.number%> </p>
+          <p> Review: <p> <%= eatery.content%></p> 
+          <br>
+        <div>
+        <%end%>
+    <br>  
+    <a href="/eateries/new"> Add another restaurant to the list!</a><br>
+    <br>
+    <br>
+    <h4><p> Check out other recommended restaurants: </p><h4>
+        <br>
+        <% Eatery.all.each do |eatery| %>
 
-
-   
-
-  # List out all of your reviews, then list out all user views    
-
-  <a href="/eateries/new"> Add another restaurant to the list!</a><br>
-  <br>
-  <a href="/logout"> Log Out </a>
-<br>
-<br>
-<p> Check out other recommended restaurants, in which your need to check out! </p>
-<br>
-# <% Eatery.all.each do |review| %>
-#   <p>Restaurant Name: <%= eatery.name %></p>
-#       <p>Localite: <%=User.find(eatery.user_id).name%></p>
-#       <p>Cuisine: <%= eatery.cuisine %></p>
-#       <p>Rating: <%= eatery.rating %></p>
-#       <p>Content: <%= eatery.content %></p>
-#       <p>Number: <%= eatery.number %></p>
-#       <br>
-#     <%end%>
-
-# </body>
-
+        <% end %>
+    <br>
+    <a href="/logout"> Log Out </a> 
+  </body>
 </html>
