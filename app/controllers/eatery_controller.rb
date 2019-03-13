@@ -40,10 +40,10 @@ class EateryController < AppController
     end 
       @eatery = Eatery.find_by(session[:user_id])
       erb :'/show_eatery'
-    else 
-      @eatery.user_id != session[:user_id]
-      erb :"eatery/eateries"
-    end 
+    # else 
+    #   @eatery.user_id != session[:user_id]
+    #   erb :"eatery/eateries"
+    # end 
   end
 
   #Edit/Update
