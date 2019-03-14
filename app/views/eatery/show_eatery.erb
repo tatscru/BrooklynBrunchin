@@ -1,10 +1,15 @@
-<h2>@eatery.name</h2>
-<h2>@eatery.cuisine</h2>
-<h2>@eatery.rating</h2>
-<h2>@eatery.content</h2>
-<h2>@eatery.number</h2>
 
-<form method= "POST" action= "/eateries/<%= @eatery.id %>/delete"> 
-  <input id= "hidden" type= "hidden" name= "_method" value= "DELETE">
-  <input type="submit" value= "Delete Eatery">
-</form>
+
+<div class="container">
+
+  <p><span>Restaurant Name: </span> <%=@eatery.name%></p>
+  <p><span>Cuisine: </span><%=@eatery.cuisine%></p>
+  <p><span>Rating: </span><%=@eatery.rating%></p>
+  <p><span>Review: </span><%=@eatery.content%></p>
+  <p><span>Phone Number: </span><%=@eatery.number%></p>
+  <br>
+  <p>Image section, coming soon! We want to see scroll and drool over food and drinks you have enjoyed! </p>
+</div>
+
+ 
+
