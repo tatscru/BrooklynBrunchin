@@ -22,3 +22,7 @@ What you will find-
 4. User can only edit and delete reviews they have posted 
 5. Connect with other friends 
 6. More importantly, learn about the new/best restaurants in BK, NY! 
+
+Contributors Guide- 
+
+Open to contribution, as this is my second engineering project.  Bug reports and pull requests are welcome on Github: https://github.com/tatscru/BrooklynBrunchin.git.  Thank you. 
