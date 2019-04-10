@@ -27,7 +27,8 @@ class EateryController < AppController
       flash[:message] = "To give a proper review, please fill out all sections."
       redirect to '/eatery/new'
     else 
-      eatery = Eatery.create(name: params[:name], cuisine: params[:cuisine], rating: params[:rating], content: params[:content], number: params[:number], user_id: user.id)
+      # eatery = Eatery.create(name: params[:name], cuisine: params[:cuisine], rating: params[:rating], content: params[:content], number: params[:number], user_id: user.id)
+      user.eateries.create(name: params[:name], cuisine: params[:cuisine], rating: params[:rating], content: params[:content], number: params[:number])
       redirect '/eateries'
     end 
   end 
@@ -58,11 +59,14 @@ class EateryController < AppController
       redirect to "/reviews/#{params[:id]}/edit"
     end 
     eatery = Eatery.find_by(params[:id])
+    if Helpers.current_user(session).id == eatery.user_id
 
-    eatery.update({ name: params[:name], cuisine: params[:cuisine], rating: params[:rating], content: params[:content], number: params[:number] })
-    eatery.save 
-    # flash[:messsage] = "Your review has been updated!"
-    redirect "/eateries"
+      eatery.update({ name: params[:name], cuisine: params[:cuisine], rating: params[:rating], content: params[:content], number: params[:number] })
+      # flash[:messsage] = "Your review has been updated!"
+      redirect "/eateries"
+    else 
+      # flash message or request.refer helper 
+    end 
   end 
 
   delete '/eateries/:id/delete' do 

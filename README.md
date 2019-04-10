@@ -1,4 +1,4 @@
-Brooklyn Eateries - App Usage 
+# Brooklyn Eateries - App Usage 
 
 Intro- 
 
@@ -16,7 +16,7 @@ Usage-
 
 What you will find- 
 
-1. Users must have an account - being able to sign up, sign in, and sign out.
+1. Users must have an account - being able to sign up, sign in, and sign out
 2. Validation of authentification 
 3. Ability to CRUD (Create, Read, Update, & Delete)
 4. User can only edit and delete reviews they have posted 

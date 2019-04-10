@@ -1,7 +1,7 @@
 require './config/environment'
 require 'pry'
 
-#this allows us to use HTTP methods like puts/patch
+#this allows us to use HTTP methods like puts/patch/delete
 use Rack::MethodOverride
 use UserController
 use EateryController
