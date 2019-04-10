@@ -48,7 +48,7 @@ class EateryController < AppController
     if Helpers.current_user(session).id == @eatery.user_id
       erb :"/eatery/edit_eatery"
     else 
-      # flash[:wrong_user_edit] = "Sorry you can only edit restaurants that you yourself have reviewed"
+      flash[:wrong_user_edit] = "Sorry you can only edit restaurants that you yourself have reviewed"
       redirect '/eateries'
     end 
   end
@@ -62,7 +62,7 @@ class EateryController < AppController
     if Helpers.current_user(session).id == eatery.user_id
 
       eatery.update({ name: params[:name], cuisine: params[:cuisine], rating: params[:rating], content: params[:content], number: params[:number] })
-      # flash[:messsage] = "Your review has been updated!"
+      flash[:messsage] = "Your review has been updated!"
       redirect "/eateries"
     else 
       # flash message or request.refer helper 
@@ -74,11 +74,11 @@ class EateryController < AppController
       @eatery = Eatery.find_by(params[:id])
       if Helpers.current_user(session).id == @eatery.user_id
         @eatery.destroy
-        # flash[:message] = "You have just deleted a review."
+        flash[:message] = "You have just deleted a review."
         redirect to "/eateries"
       end 
     else 
-      # flash[:message] = "Looks as though you have not logged in yet."
+      flash[:message] = "Looks as though you have not logged in yet."
       redirect '/login'
     end 
   end 

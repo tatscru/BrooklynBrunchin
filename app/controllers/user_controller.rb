@@ -32,7 +32,7 @@ class UserController < AppController
       session[:user_id] = user.id 
       redirect '/eateries'
     else 
-      # flash[:login_error] = "Incorrect login. Please try again."
+      flash[:login_error] = "Incorrect login. Please try again."
       redirect '/login'
     end 
   end 

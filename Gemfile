@@ -11,6 +11,7 @@ gem "rspec"
 gem "capybara"
 gem "pry"
 gem "sqlite3"  
+gem "sinatra-flash"
 
 
 
