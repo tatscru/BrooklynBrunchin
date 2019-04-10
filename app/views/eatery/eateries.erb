@@ -1,12 +1,12 @@
 <header><button style="margin: 20px 0;"><a href="/logout">Log Out</a></button></header>
 <div class="container">
   <h1> Brooklyn Eateries, Believe the Hype! </h1>
-  <h2>Welcome, <%= Helpers.current_user(session).username %>!</h2>
+  <h2>Welcome, <%= current_user.username %>!</h2>
 
   <p>Below, is a list of the best places to eat in BK... subjectively :) </p> 
   <h3>Places you have recommended:</h3>
   <div class="eateries">
-    <% Helpers.current_user(session).eateries.each do |eatery| %>
+    <% current_user.eateries.each do |eatery| %>
       <div class="eatery submitter"> 
         <p><span>Restaurant: </span><a href= "<%= eatery.url %>"><%= eatery.name %></a></p>
         <p><span>Cuisine: </span><%= eatery.cuisine%> </p> 

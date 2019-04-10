@@ -1,7 +1,7 @@
 class UserController < AppController 
 
   get '/signup' do 
-    if !Helpers.logged_in?(session)
+    if !logged_in?
       erb :'user/new_user'
     else 
       redirect '/eateries'
@@ -19,7 +19,7 @@ class UserController < AppController
   end  
   
   get '/login' do
-    if !Helpers.logged_in?(session)
+    if !logged_in?
       erb :'user/login'
     else 
       redirect '/eateries'
@@ -38,7 +38,7 @@ class UserController < AppController
   end 
 
   get '/logout' do 
-    if Helpers.logged_in?(session)
+    if logged_in?
       session.clear 
       redirect '/login'
     else 
